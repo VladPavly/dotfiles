@@ -9,6 +9,7 @@ require("main.plugins.lualine")
 require("main.plugins.telescope")
 require("main.plugins.nvim-cmp")
 require("main.plugins.treesitter")
+require("main.plugins.alpha")
 
 require("main.plugins.lsp.mason")
 require("main.plugins.lsp.lspsaga")

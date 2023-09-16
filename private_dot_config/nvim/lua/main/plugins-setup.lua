@@ -57,6 +57,9 @@ return packer.startup(function(use)
   -- Statusline
   use("nvim-lualine/lualine.nvim")
 
+  -- Startup
+  use('goolord/alpha-nvim')
+
   -- Fuzzy finding w/ telescope
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- Dependency for better sorting performance
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- Fuzzy finder

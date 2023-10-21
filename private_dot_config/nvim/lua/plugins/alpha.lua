@@ -1,86 +1,90 @@
-local alpha_setup, alpha = pcall(require, "alpha")
-if not alpha_setup then
-  return
-end
+-- local alpha_setup, alpha = pcall(require, "alpha")
+-- if not alpha_setup then
+--   return
+-- end
 
+return {
+  'goolord/alpha-nvim',
+  config = function()
+    alpha = require('alpha')
 
-local if_nil = vim.F.if_nil
+    local if_nil = vim.F.if_nil
 
-local default_terminal = {
-    type = "terminal",
-    command = nil,
-    width = 69,
-    height = 8,
-    opts = {
+    local default_terminal = {
+      type = "terminal",
+      command = nil,
+      width = 69,
+      height = 8,
+      opts = {
         redraw = true,
         window_config = {},
-    },
-}
+      },
+    }
 
-local default_header = {
-    type = "text",
-    val = {
+    local default_header = {
+      type = "text",
+      val = {
         [[                                  __]],
         [[     ___     ___    ___   __  __ /\_\    ___ ___]],
         [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
         [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
         [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
         [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-    },
-    opts = {
+      },
+      opts = {
         position = "center",
         hl = "Type",
         -- wrap = "overflow";
-    },
-}
+      },
+    }
 
-local footer = {
-    type = "text",
-    val = "",
-    opts = {
+    local footer = {
+      type = "text",
+      val = "",
+      opts = {
         position = "center",
         hl = "Number",
-    },
-}
+      },
+    }
 
-local leader = "SPC"
+    local leader = "SPC"
 
 --- @param sc string
 --- @param txt string
 --- @param keybind string? optional
 --- @param keybind_opts table? optional
-local function button(sc, txt, keybind, keybind_opts)
-    local sc_ = sc:gsub("%s", ""):gsub(leader, "<leader>")
+    local function button(sc, txt, keybind, keybind_opts)
+      local sc_ = sc:gsub("%s", ""):gsub(leader, "<leader>")
 
-    local opts = {
+      local opts = {
         position = "center",
         shortcut = sc,
         cursor = 3,
         width = 50,
         align_shortcut = "right",
         hl_shortcut = "Keyword",
-    }
-    if keybind then
+      }
+      if keybind then
         keybind_opts = if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
         opts.keymap = { "n", sc_, keybind, keybind_opts }
-    end
+      end
 
-    local function on_press()
+      local function on_press()
         local key = vim.api.nvim_replace_termcodes(keybind or sc_ .. "<Ignore>", true, false, true)
         vim.api.nvim_feedkeys(key, "t", false)
-    end
+      end
 
-    return {
+      return {
         type = "button",
         val = txt,
         on_press = on_press,
         opts = opts,
-    }
-end
+      }
+    end
 
-local buttons = {
-    type = "group",
-    val = {
+    local buttons = {
+      type = "group",
+      val = {
         button("e", "  New file", "<cmd>ene <CR>"),
         button("SPC f f", "󰈞  Find file"),
         button("SPC f r", "  Recently opened files"),
@@ -88,33 +92,38 @@ local buttons = {
         button("SPC f s", "󰊄  Find word"),
         -- button("SPC f m", "  Jump to bookmarks"),
         -- button("SPC s l", "  Open last session"),
-    },
-    opts = {
+      },
+      opts = {
         spacing = 1,
-    },
-}
+      },
+    }
 
-local section = {
-    terminal = default_terminal,
-    header = default_header,
-    buttons = buttons,
-    footer = footer,
-}
+    local section = {
+      terminal = default_terminal,
+      header = default_header,
+      buttons = buttons,
+      footer = footer,
+    }
 
-local config = {
-    layout = {
+    local config = {
+      layout = {
         { type = "padding", val = 2 },
         section.header,
         { type = "padding", val = 2 },
         section.buttons,
         section.footer,
-    },
-    opts = {
+      },
+      opts = {
         margin = 5,
-    },
+      },
+    }
+
+
+    alpha.setup(config)
+
+    if vim.fn.argc() == 0 then
+      vim.cmd('Alpha')
+    end
+  end
 }
-
-
-alpha.setup(config)
-vim.cmd('Alpha')
 

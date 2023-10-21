@@ -5,3 +5,4 @@ vim.cmd([[colorscheme catppuccin-macchiato]])
 -- print("Colorscheme not found!") -- print error if colorscheme not installed
 -- return
 -- end
+

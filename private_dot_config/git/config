@@ -4,3 +4,6 @@
 	email = pvlad1285@gmail.com
 [safe]
 
+[credential]
+    helper = osxkeychain
+

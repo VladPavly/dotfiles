@@ -49,8 +49,26 @@ return {
   
   -- Debugger
   'mfussenegger/nvim-dap',
+  {
+    'mfussenegger/nvim-dap-python',
+    config = function()
+        require('dap-python').setup('/opt/homebrew/bin/python3.11')
+    end,
+    dependencies = {
+        'mfussenegger/nvim-dap',
+        'rcarriga/nvim-dap-ui'
+    }
+  },
+  'theHamsta/nvim-dap-virtual-text',
   
   -- Git
   'lewis6991/gitsigns.nvim',
+
+  -- Terminal
+  {
+    'akinsho/toggleterm.nvim', 
+    version = '*', 
+    config = true
+  }
 }
 

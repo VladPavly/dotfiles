@@ -8,3 +8,5 @@ alias obs="cd \"/Users/vlad/Library/Mobile Documents/iCloud~md~obsidian/Document
 
 alias s="kitty +kitten ssh"
 
+alias cat="bat -P -p"
+

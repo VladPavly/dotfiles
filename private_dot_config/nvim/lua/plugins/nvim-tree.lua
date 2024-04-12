@@ -7,7 +7,7 @@ return {
     vim.g.loaded_netrwPlugin = 1
 
     local function open_nvim_tree(data)
-      local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+      local no_name = data.file == '' and vim.bo[data.buf].buftype == ''
       local directory = vim.fn.isdirectory(data.file) == 1
 
       if not no_name and not directory then
@@ -18,10 +18,10 @@ return {
         vim.cmd.cd(data.file)
       end
 
-      require("nvim-tree.api").tree.open()
+      require('nvim-tree.api').tree.open()
     end
 
-    vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+    vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
     
     nvim_tree.setup({
       actions = {

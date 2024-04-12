@@ -6,9 +6,7 @@ return {
 
     local treesitter = require('nvim-treesitter')
     treesitter.setup({
-      highlight = {
-        enable = true,
-      },
+      highlight = { enable = true },
       indent = { enable = true },
       autotag = { enable = true },
       ensure_installed = {

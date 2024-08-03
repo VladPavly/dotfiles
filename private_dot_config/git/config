@@ -1,0 +1,9 @@
+# Это файл конфигурации пользователя Git.
+[user]
+	name = Vlad
+	email = pvlad1285@gmail.com
+[safe]
+
+[credential]
+    helper = osxkeychain
+

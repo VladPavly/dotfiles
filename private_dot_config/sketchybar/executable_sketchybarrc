@@ -1,48 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env lua
 
-source "$CONFIG_DIR/colors.sh" 
-
-PLUGIN_DIR="$CONFIG_DIR/plugins"
-ITEM_DIR="$CONFIG_DIR/items"
-
-# Bar Appearance
-# https://felixkratz.github.io/SketchyBar/config/bar
-# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
-
-sketchybar --bar height=37        \
-                 blur_radius=30   \
-                 position=top     \
-                 sticky=off       \
-                 padding_left=10  \
-                 padding_right=10 \
-                 color=$BAR_COLOR
-
-# Changing Defaults
-# https://felixkratz.github.io/SketchyBar/config/items
-
-sketchybar --default icon.font="SF Pro:Semibold:15.0"  \
-                     icon.color=$WHITE                 \
-                     label.font="SF Pro:Semibold:15.0" \
-                     label.color=$WHITE                \
-                     background.color=$ITEM_BG_COLOR       \
-                     background.corner_radius=5            \
-                     background.height=24                  \
-                     padding_left=5                        \
-                     padding_right=5                       \
-                     label.padding_left=4                  \
-                     label.padding_right=10                \
-                     icon.padding_left=10                  \
-                     icon.padding_right=4
-
-# Left Side Items
-source $ITEM_DIR/spaces.sh
-source $ITEM_DIR/front_app.sh
-
-# Right Side Items
-source $ITEM_DIR/calendar.sh
-source $ITEM_DIR/volume.sh
-source $ITEM_DIR/battery.sh
-source $ITEM_DIR/cpu.sh
-
-sketchybar --update
-
+-- Load the sketchybar-package and prepare the helper binaries
+require("helpers")
+require("init")

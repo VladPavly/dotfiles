@@ -1,14 +1,16 @@
+#!/usr/bin/env bash
+
 yabai -m config layout bsp
 
 # New window spawns to the right if vertical split, or bottom if horizontal split
 yabai -m config window_placement second_child
 
 # Padding
-yabai -m config top_padding 6
-yabai -m config bottom_padding 6
-yabai -m config left_padding 5
-yabai -m config right_padding 5
-yabai -m config window_gap 6
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config window_gap 10
 
 # Center mouse on window with focus
 yabai -m config mouse_follows_focus on
@@ -24,7 +26,10 @@ yabai -m config mouse_action2 resize
 yabai -m mouse_drop_action swap
 
 # Sketchybar
-yabai -m config external_bar all:35:0
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+yabai -m config external_bar all:33:0
 
 # Disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
@@ -32,3 +37,10 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^QuickTime Player$" manage=off
 yabai -m rule --add app="^ArkhamCards$" manage=off
 
+# JankyBorders
+
+borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 &
+
+# Sketchybar
+
+sketchybar --reload

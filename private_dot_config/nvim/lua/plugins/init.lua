@@ -69,5 +69,8 @@ return {
     'akinsho/toggleterm.nvim', 
     version = '*', 
     config = true
-  }
+  },
+
+  -- RISC-V
+  'henry-hsieh/riscv-asm-vim'
 }

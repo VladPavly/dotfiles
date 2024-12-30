@@ -3,7 +3,7 @@ return {
 	dependencies = 'MunifTanjim/nui.nvim',
 	config = function() require('competitest').setup({
         compile_command = {
-		    cpp = { exec = 'clang++', args = { '--debug', '$(FNAME)', '-std=c++11', '--output', '$(FNOEXT).out' } },
+		    cpp = { exec = 'clang++', args = { '--debug', '$(FNAME)', '-std=c++20', '--output', '$(FNOEXT).out' } },
 	    },
         run_command = {
 		    cpp = { exec = './$(FNOEXT).out', },
@@ -21,9 +21,9 @@ return {
     }) end,
     keys = {
         { '<leader>cr', '<cmd>CompetiTest run <CR>', desc = 'Run tests' },
-        { '<leader>cd', '<cmd>CompetiTest receive contest <CR>', desc = 'Download contest' },
+        { '<leader>cl', '<cmd>CompetiTest receive contest <CR>', desc = 'Load contest' },
         { '<leader>ca', '<cmd>CompetiTest add_testcase <CR>', desc = 'Add testcase' },
         { '<leader>ce', '<cmd>CompetiTest edit_testcase <CR>', desc = 'Edit testcase' },
-        { '<leader>cr', '<cmd>CompetiTest delete_testcase <CR>', desc = 'Remove testcase' }
+        { '<leader>cd', '<cmd>CompetiTest delete_testcase <CR>', desc = 'Delete testcase' }
     }
 }

@@ -99,28 +99,6 @@ local space_window_observer = sbar.add("item", {
   updates = true,
 })
 
-local spaces_indicator = sbar.add("item", {
-  padding_left = -3,
-  padding_right = 0,
-  icon = {
-    padding_left = 8,
-    padding_right = 9,
-    color = colors.grey,
-    string = icons.switch.on,
-  },
-  label = {
-    width = 0,
-    padding_left = 0,
-    padding_right = 8,
-    string = "Spaces",
-    color = colors.bg1,
-  },
-  background = {
-    color = colors.with_alpha(colors.grey, 0.0),
-    border_color = colors.with_alpha(colors.bg1, 0.0),
-  }
-})
-
 space_window_observer:subscribe("space_windows_change", function(env)
   local icon_line = ""
   local no_app = true
@@ -137,15 +115,4 @@ space_window_observer:subscribe("space_windows_change", function(env)
   sbar.animate("tanh", 10, function()
     spaces[env.INFO.space]:set({ label = icon_line })
   end)
-end)
-
-spaces_indicator:subscribe("swap_menus_and_spaces", function(env)
-  local currently_on = spaces_indicator:query().icon.value == icons.switch.on
-  spaces_indicator:set({
-    icon = currently_on and icons.switch.off or icons.switch.on
-  })
-end)
-
-spaces_indicator:subscribe("mouse.clicked", function(env)
-  sbar.trigger("swap_menus_and_spaces")
 end)

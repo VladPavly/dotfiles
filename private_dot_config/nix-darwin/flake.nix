@@ -1,8 +1,8 @@
 {
-  description = "@dalvpv macOS flake";
+  description = "dalv macOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -46,6 +46,7 @@
         pkgs.so
         pkgs.neofetch
         pkgs.fd
+        pkgs.tree
 
         pkgs.ansible
         pkgs.wget
@@ -54,6 +55,7 @@
         pkgs.bitwarden-cli
         pkgs.inetutils
         pkgs.ripgrep
+        pkgs.xz
 
         pkgs.localsend
         pkgs.kitty
@@ -92,11 +94,12 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MacBook-Air-Vladislav-2
-    darwinConfigurations."MacBook-Air-Vladislav-2" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#main
+
+    darwinConfigurations."main" = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
 
-    darwinPackages = self.darwinConfigurations."MacBook-Air-Vladislav-2".pkgs;
+    darwinPackages = self.darwinConfigurations."main".pkgs;
   };
 }
